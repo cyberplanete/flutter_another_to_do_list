@@ -24,8 +24,8 @@ class _LigneTacheState extends State<LigneTache> {
       ),
       trailing: CheckboxOfTask(
         checkBoxState: isChecked,
-        toogleCheckBoxState: checkBoxCallBack,
-        // ou
+        toogleCheckBoxStateFunction: checkBoxCallBack,
+        // IDENTIQUE À:
         /*  toogleCheckBoxState: (bool checkBoxState) {
           setState(() {
             isChecked = checkBoxState;
@@ -38,16 +38,16 @@ class _LigneTacheState extends State<LigneTache> {
 
 class CheckboxOfTask extends StatelessWidget {
   final bool checkBoxState;
-  final Function toogleCheckBoxState;
+  final Function toogleCheckBoxStateFunction;
 
-  CheckboxOfTask({this.checkBoxState, this.toogleCheckBoxState});
+  CheckboxOfTask({this.checkBoxState, this.toogleCheckBoxStateFunction});
 
   @override
   Widget build(BuildContext context) {
     return Checkbox(
       activeColor: Colors.lightBlueAccent,
       //Je modifie la valeur sur chaque click.. true ou false
-      onChanged: toogleCheckBoxState,
+      onChanged: toogleCheckBoxStateFunction,
       //retourne la nouvelle valeur à mon callback
       value: checkBoxState,
     );
