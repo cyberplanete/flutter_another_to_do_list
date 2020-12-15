@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_another_to_do_list/Widgets/liste_taches.dart';
+import 'package:flutter_another_to_do_list/views/EcranAjoutTache.dart';
+
+final List<String> entries = <String>['A', 'B', 'C'];
+final List<int> colorCodes = <int>[600, 500, 100];
 
 class EcranDesTaches extends StatelessWidget {
+  final bool value = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,6 +15,31 @@ class EcranDesTaches extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
+        onPressed: () {
+          // showModalBottomSheet() est utilisée pour créer et afficher
+          // un Dialog (boîte de dialogue) contenant une bottom-sheet, qui flotte au-dessus
+          // de tous les autres éléments de l'application
+          showModalBottomSheet(
+              /*     TODO Code permettant de gerer l'ecran modal sur petit ecran
+              Pour certaines tailles d'écran, cela peut signifier que le bouton Ajouter est masqué.
+             En définissant la propriété isScrolledControlled sur true, le modal occupe le plein écran:
+                         onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => SingleChildScrollView(
+                        child:Container(
+                          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                          child: AddTaskScreen(),
+                        )
+                    )
+                );
+              }*/
+              context: context,
+              builder: (context) {
+                return EcranAjoutTache();
+              });
+        },
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,12 +83,13 @@ class EcranDesTaches extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-            ),
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30))),
+                child: ListeTaches()),
           ),
         ],
       ),
