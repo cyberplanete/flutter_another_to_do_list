@@ -9,12 +9,34 @@ class ListeTaches extends StatefulWidget {
 }
 
 class _ListeTachesState extends State<ListeTaches> {
-  List<Tache> TachesList = [];
+  List<Tache> tachesList = [
+    Tache(tacheTexte: 'Apprendre flutter'),
+    Tache(tacheTexte: 'Apprendre Kotlin'),
+    Tache(tacheTexte: 'Contacter avocat'),
+    Tache(tacheTexte: 'Activation ligne Free'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [LigneTache(), LigneTache(), LigneTache(), LigneTache()],
+      children: [
+        LigneTache(
+          titreTache: tachesList[0].tacheTexte,
+          isChecked: tachesList[0].isCompleted,
+        ),
+        LigneTache(
+          titreTache: tachesList[1].tacheTexte,
+          isChecked: tachesList[1].isCompleted,
+        ),
+        LigneTache(
+          titreTache: tachesList[2].tacheTexte,
+          isChecked: tachesList[2].isCompleted,
+        ),
+        LigneTache(
+          titreTache: tachesList[3].tacheTexte,
+          isChecked: tachesList[3].isCompleted,
+        )
+      ],
     );
   }
 }
