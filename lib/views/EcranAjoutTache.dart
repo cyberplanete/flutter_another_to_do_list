@@ -1,7 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_another_to_do_list/models/tache_model.dart';
 
 class EcranAjoutTache extends StatelessWidget {
+  String nouvelleTache;
+
+  final Function addTaskCallBack;
+
+  EcranAjoutTache({this.addTaskCallBack});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,6 +36,9 @@ class EcranAjoutTache extends StatelessWidget {
                   fontWeight: FontWeight.w700),
             ),
             TextFormField(
+              onChanged: (newText) {
+                nouvelleTache = newText;
+              },
               //Permet d'activer le clavier automatiquement
               autofocus: true,
               textAlign: TextAlign.center,
@@ -41,10 +51,13 @@ class EcranAjoutTache extends StatelessWidget {
               height: 10,
             ),
             FlatButton(
+              child: Text('Ajouter'),
               onPressed: () {
-                //Ajout de la tache à la liste
+                //Je transmets la tache à mon callback pour l'ajouter à ma liste
+                addTaskCallBack(//Une tache est toujours initialisé à false
+                    Tache(tacheTexte: nouvelleTache));
+                Navigator.pop(context);
               },
-              child: Text('Test'),
               color: Colors.lightBlueAccent,
               textColor: Colors.white,
             )

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class LigneTache extends StatelessWidget {
   bool isChecked;
   final String titreTache;
+  Function checkBoxCallBack;
 
-  LigneTache({this.isChecked, this.titreTache});
+  LigneTache({this.isChecked, this.titreTache, this.checkBoxCallBack});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class LigneTache extends StatelessWidget {
         //Je modifie la valeur sur chaque click.. true ou false
         // onChanged: toogleCheckBoxStateFunction,
         //retourne la nouvelle valeur à mon callback
-        value: isChecked, onChanged: (bool value) {},
+        value: isChecked, onChanged: checkBoxCallBack,
       ),
     );
   }

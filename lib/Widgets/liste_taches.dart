@@ -1,42 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_another_to_do_list/models/taches.dart';
-
-import 'Ligne_tache.dart';
+import 'package:flutter_another_to_do_list/Widgets/Ligne_tache.dart';
+import 'package:flutter_another_to_do_list/models/tache_model.dart';
 
 class ListeTaches extends StatefulWidget {
+  List<Tache> tachesList;
+  //Utiliser dans le cas d'un StatelessWidget
+  Function callBackUpdateListTask;
+  ListeTaches({this.tachesList, this.callBackUpdateListTask});
+
   @override
   _ListeTachesState createState() => _ListeTachesState();
 }
 
 class _ListeTachesState extends State<ListeTaches> {
-  List<Tache> tachesList = [
-    Tache(tacheTexte: 'Apprendre flutter'),
-    Tache(tacheTexte: 'Apprendre Kotlin'),
-    Tache(tacheTexte: 'Contacter avocat'),
-    Tache(tacheTexte: 'Activation ligne Free'),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        LigneTache(
-          titreTache: tachesList[0].tacheTexte,
-          isChecked: tachesList[0].isCompleted,
-        ),
-        LigneTache(
-          titreTache: tachesList[1].tacheTexte,
-          isChecked: tachesList[1].isCompleted,
-        ),
-        LigneTache(
-          titreTache: tachesList[2].tacheTexte,
-          isChecked: tachesList[2].isCompleted,
-        ),
-        LigneTache(
-          titreTache: tachesList[3].tacheTexte,
-          isChecked: tachesList[3].isCompleted,
-        )
-      ],
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return LigneTache(
+          titreTache: widget.tachesList[index].tacheTexte,
+          isChecked: widget.tachesList[index].isCompleted,
+          checkBoxCallBack: (value) {
+            setState(() {
+              widget.tachesList[index].toggleDone();
+            });
+
+            //widget.callBackUpdateListTask(index);
+          },
+        );
+      },
+      itemCount: widget.tachesList.length,
     );
   }
 }
+
+/*class ListeTaches extends StatelessWidget {
+  List<Tache> tachesList;
+  Function callBackUpdateListTask;
+  ListeTaches({this.tachesList, this.callBackUpdateListTask});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return LigneTache(
+          titreTache: tachesList[index].tacheTexte,
+          isChecked: tachesList[index].isCompleted,
+          checkBoxCallBack: (value) {
+            //tachesList[index].toggleDone();
+            callBackUpdateListTask(index);
+          },
+        );
+      },
+      itemCount: tachesList.length,
+    );
+  }
+}*/
