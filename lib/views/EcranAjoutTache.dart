@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_another_to_do_list/models/tache_data_model.dart';
 import 'package:flutter_another_to_do_list/models/tache_model.dart';
+import 'package:provider/provider.dart';
 
 class EcranAjoutTache extends StatelessWidget {
   String nouvelleTache;
 
-  final Function addTaskCallBack;
+  //final Function addTaskCallBack;
 
-  EcranAjoutTache({this.addTaskCallBack});
+  // EcranAjoutTache({this.addTaskCallBack});
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +55,9 @@ class EcranAjoutTache extends StatelessWidget {
             FlatButton(
               child: Text('Ajouter'),
               onPressed: () {
-                //Je transmets la tache à mon callback pour l'ajouter à ma liste
-                addTaskCallBack(//Une tache est toujours initialisé à false
-                    Tache(tacheTexte: nouvelleTache));
+                Provider.of<TacheData>(context, listen: false).addTask(Tache(
+                  tacheTexte: nouvelleTache,
+                ));
                 Navigator.pop(context);
               },
               color: Colors.lightBlueAccent,

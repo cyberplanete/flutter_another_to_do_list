@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_another_to_do_list/Widgets/liste_taches.dart';
-import 'package:flutter_another_to_do_list/models/tache_model.dart';
+import 'package:flutter_another_to_do_list/Widgets/widget_liste_taches.dart';
+import 'package:flutter_another_to_do_list/models/tache_data_model.dart';
 import 'package:flutter_another_to_do_list/views/EcranAjoutTache.dart';
-
-List<Tache> tachesList = [
-  Tache(tacheTexte: 'Apprendre flutter'),
-  Tache(tacheTexte: 'Apprendre Kotlin'),
-  Tache(tacheTexte: 'Contacter avocat'),
-  Tache(tacheTexte: 'Activation ligne Free'),
-];
+import 'package:provider/provider.dart';
 
 class EcranDesTaches extends StatefulWidget {
   //final Tache tache;
   @override
   _EcranDesTachesState createState() => _EcranDesTachesState();
-
-  static void addTask(Tache tache) {}
 }
 
 class _EcranDesTachesState extends State<EcranDesTaches> {
@@ -51,11 +43,7 @@ class _EcranDesTachesState extends State<EcranDesTaches> {
               context: context,
               builder: (context) {
                 //Callback - Reception de la nouvelle tache, puis mise à jour des states
-                return EcranAjoutTache(addTaskCallBack: (nouvelleTache) {
-                  setState(() {
-                    tachesList.add(nouvelleTache);
-                  });
-                });
+                return EcranAjoutTache();
               });
         },
       ),
@@ -90,7 +78,8 @@ class _EcranDesTachesState extends State<EcranDesTaches> {
                   height: 10,
                 ),
                 Text(
-                  '${tachesList.length} tâches restantes',
+                  //${tachesList.length}
+                  '${Provider.of<TacheData>(context).tachesList.length} tâches restantes',
                   style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(
@@ -109,18 +98,7 @@ class _EcranDesTachesState extends State<EcranDesTaches> {
                   topRight: Radius.circular(30),
                 ),
               ),
-              child: ListeTaches(
-                tachesList: tachesList,
-                //Utilise si ListeTaches est un StateLessWidget
-                //CallBack: Je récupère l'index de la tache dont la checkbox doit être mise à jour
-                //Pour plus de simplicite ListeTaches peut être configuré en statefullWidget
-                /*  callBackUpdateListTask: (index) {
-                  setState(() {
-                    tachesList[index].toggleDone();
-                  });
-                },*/
-                // checkBoxCallBack: () {},
-              ),
+              child: ListeTaches(),
             ),
           ),
         ],

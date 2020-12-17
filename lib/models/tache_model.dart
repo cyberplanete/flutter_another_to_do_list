@@ -1,4 +1,6 @@
-class Tache {
+import 'package:flutter/cupertino.dart';
+
+class Tache extends ChangeNotifier {
   bool isCompleted;
   final String tacheTexte;
 
@@ -6,5 +8,6 @@ class Tache {
 
   void toggleDone() {
     isCompleted = !isCompleted;
+    notifyListeners();
   }
 }
