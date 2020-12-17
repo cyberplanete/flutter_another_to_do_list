@@ -79,7 +79,7 @@ class _EcranDesTachesState extends State<EcranDesTaches> {
                 ),
                 Text(
                   //${tachesList.length}
-                  '${Provider.of<TacheData>(context).tachesList.length} tâches restantes',
+                  '${Provider.of<TacheData>(context).nombreTaches} tâches restantes',
                   style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(

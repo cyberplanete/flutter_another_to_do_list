@@ -17,4 +17,8 @@ class TacheData extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  int get nombreTaches {
+    return tachesList.length;
+  }
 }
