@@ -10,15 +10,14 @@ class ListeTaches extends StatelessWidget {
       builder: (context, tacheData, child) {
         return ListView.builder(
           itemBuilder: (context, index) {
+            var tache = tacheData.taches[index];
             return LigneTache(
-              titreTache: tacheData.tachesList[index].tacheTexte,
-              isChecked: tacheData.tachesList[index].isCompleted,
+              titreTache: tache.tacheTexte,
+              isChecked: tache.isCompleted,
               checkBoxCallBack: (value) {
-                /* setState(() {
                 Provider.of<TacheData>(context, listen: false)
-                    .tachesList[index]
+                    .taches[index]
                     .toggleDone();
-              });*/
 
                 //widget.callBackUpdateListTask(index);
               },

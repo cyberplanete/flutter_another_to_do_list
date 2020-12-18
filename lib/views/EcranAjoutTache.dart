@@ -14,10 +14,10 @@ class EcranAjoutTache extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //Couleur du background copiée afin de pouvoir créer une forme arrondi sur le haut de mon ecran ajout de tache
+      ///Couleur du background copiée afin de pouvoir créer une forme arrondi sur le haut de mon ecran ajout de tache
       color: Color(0xff757575),
       child: Container(
-        //Pour reduire la taille texfield et flatButton
+        ///Pour reduire la taille texfield et flatButton
         padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
             color: Colors.white,
@@ -41,7 +41,8 @@ class EcranAjoutTache extends StatelessWidget {
               onChanged: (newText) {
                 nouvelleTache = newText;
               },
-              //Permet d'activer le clavier automatiquement
+
+              ///Permet d'activer le clavier automatiquement
               autofocus: true,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
@@ -55,9 +56,10 @@ class EcranAjoutTache extends StatelessWidget {
             FlatButton(
               child: Text('Ajouter'),
               onPressed: () {
-                Provider.of<TacheData>(context, listen: false).addTask(Tache(
-                  tacheTexte: nouvelleTache,
-                ));
+                var tache = Tache(tacheTexte: nouvelleTache);
+
+                /// Obligation de passer par une methode afin de solliciter notifyListeners
+                Provider.of<TacheData>(context, listen: false).addTache(tache);
                 Navigator.pop(context);
               },
               color: Colors.lightBlueAccent,

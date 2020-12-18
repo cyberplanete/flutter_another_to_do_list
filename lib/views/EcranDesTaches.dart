@@ -4,13 +4,7 @@ import 'package:flutter_another_to_do_list/models/tache_data_model.dart';
 import 'package:flutter_another_to_do_list/views/EcranAjoutTache.dart';
 import 'package:provider/provider.dart';
 
-class EcranDesTaches extends StatefulWidget {
-  //final Tache tache;
-  @override
-  _EcranDesTachesState createState() => _EcranDesTachesState();
-}
-
-class _EcranDesTachesState extends State<EcranDesTaches> {
+class EcranDesTaches extends StatelessWidget {
   final bool value = false;
 
   @override
@@ -21,9 +15,9 @@ class _EcranDesTachesState extends State<EcranDesTaches> {
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
         onPressed: () {
-          // showModalBottomSheet() est utilisée pour créer et afficher
-          // un Dialog (boîte de dialogue) contenant une bottom-sheet, qui flotte au-dessus
-          // de tous les autres éléments de l'application
+          /// showModalBottomSheet() est utilisée pour créer et afficher
+          /// un Dialog (boîte de dialogue) contenant une bottom-sheet, qui flotte au-dessus
+          /// de tous les autres éléments de l'application
           showModalBottomSheet(
               /*     TODO Code permettant de gerer l'ecran modal sur petit ecran
               Pour certaines tailles d'écran, cela peut signifier que le bouton Ajouter est masqué.
