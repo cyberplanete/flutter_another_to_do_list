@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 class LigneTache extends StatelessWidget {
   bool isChecked;
   final String titreTache;
-  Function checkBoxCallBack;
-
-  LigneTache({this.isChecked, this.titreTache, this.checkBoxCallBack});
+  final Function checkBoxCallBack;
+  final Function longPressCallBack;
+  LigneTache(
+      {this.isChecked,
+      this.titreTache,
+      this.checkBoxCallBack,
+      this.longPressCallBack});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onLongPress: longPressCallBack,
       title: Text(
         titreTache,
         style: TextStyle(

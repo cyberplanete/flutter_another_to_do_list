@@ -12,28 +12,18 @@ class EcranDesTaches extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        child: Icon(Icons.add),
+        backgroundColor: (Provider.of<TacheData>(context).isSelectedTask)
+            ? Colors.red
+            : Colors.lightBlueAccent,
+        child: (Provider.of<TacheData>(context).isSelectedTask)
+            ? Icon(Icons.delete)
+            : Icon(Icons.add),
         onPressed: () {
           /// showModalBottomSheet() est utilisée pour créer et afficher
           /// un Dialog (boîte de dialogue) contenant une bottom-sheet, qui flotte au-dessus
           /// de tous les autres éléments de l'application
+          ///todo Appliquer une suppression à partir du bouton
           showModalBottomSheet(
-              /*     TODO Code permettant de gerer l'ecran modal sur petit ecran
-              Pour certaines tailles d'écran, cela peut signifier que le bouton Ajouter est masqué.
-             En définissant la propriété isScrolledControlled sur true, le modal occupe le plein écran:
-                         onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) => SingleChildScrollView(
-                        child:Container(
-                          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                          child: AddTaskScreen(),
-                        )
-                    )
-                );
-              }*/
               context: context,
               builder: (context) {
                 //Callback - Reception de la nouvelle tache, puis mise à jour des states
@@ -100,3 +90,18 @@ class EcranDesTaches extends StatelessWidget {
     );
   }
 }
+/*     TODO Code permettant de gerer l'ecran modal sur petit ecran
+              Pour certaines tailles d'écran, cela peut signifier que le bouton Ajouter est masqué.
+             En définissant la propriété isScrolledControlled sur true, le modal occupe le plein écran:
+                         onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => SingleChildScrollView(
+                        child:Container(
+                          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                          child: AddTaskScreen(),
+                        )
+                    )
+                );
+              }*/

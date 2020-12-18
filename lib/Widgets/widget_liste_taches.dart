@@ -15,11 +15,12 @@ class ListeTaches extends StatelessWidget {
               titreTache: tache.tacheTexte,
               isChecked: tache.isCompleted,
               checkBoxCallBack: (value) {
-                Provider.of<TacheData>(context, listen: false)
-                    .taches[index]
-                    .toggleDone();
-
                 //widget.callBackUpdateListTask(index);
+                tacheData.updateTache(tache);
+              },
+              longPressCallBack: () {
+                tacheData.updateSelected(tache);
+                tacheData.removeTask(tache);
               },
             );
           },
