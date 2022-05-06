@@ -9,9 +9,9 @@ Application simple de gestionnaire de tâches. Evolution progressive vers un clo
 
 ### Présentation en images:
 
-![screenshot1](screenshots/screenshot1.png)
-![screenshot2](screenshots/screenshot2.png)
-![screenshot3](screenshots/screenshot3.png)
+<img src="screenshots/screenshot1.png" width="200"><img src="screenshots/screenshot2.png" width="200">
+<img src="screenshots/screenshot3.png" width="200">
+
 
 
 ### En cours de développement
