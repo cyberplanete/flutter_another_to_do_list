@@ -1,6 +1,6 @@
 # flutter_AnotherToDoList
 
-Application simple de gestionnaire de tâches. Evolution progressive vers un clone ToDoist.
+Gestionnaire de tâches. Evolution progressive vers un clone ToDoist.
 
 ### Compatible Android ou Ios
 
